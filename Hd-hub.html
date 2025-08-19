@@ -331,7 +331,7 @@ footer { grid-area: footer; }
   <br>
   <nav class="language-nav">
         <a href="index.html" class="nav-btn telugu">@</a>
-        <a href="#" target="_blank" class="nav-btn tamil">Home</a>
+        <a href="#" target="_blank" class="nav-btn tamil">HD-Hub</a>
         <a href="#" target="_blank" class="nav-btn home">@</a>
       </nav>
     
@@ -461,16 +461,48 @@ li a.coral strong {
   }
 </style> 
   <div>
-  <center>
-  <br> 
-  <a class="nav-btn home" onclick="window.location.href=' Tamil.html ';"> Tamil Movies </a> 
-  
-  <a class="nav-btn home" onclick="window.location.href=' Tamildub.html ';"> TamilDub Movies </a> 
+   <center>
 
-  <a class="nav-btn home" onclick="window.location.href=' Hd-hub.html ';"> HD-Hub </a> 
-  <br> 
+    <br>
+
+    <button onclick="handleFinalDownload(' https://moviesfriendly.netlify.app/ ')"> 123 </button>
+
+    <button onclick="handleFinalDownload(' https://moviesfriendly.netlify.app/ ')"> 456 </button>
+    
+    <br>
+  
+
+   
   </center>
+  <!-- Popup -->
+<div id="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000b3; z-index:9999; justify-content:center; align-items:center;"> 
+  <div style="background:white; padding:20px; border-radius:8px; text-align:center;"> 
+    <p style="margin-bottom:15px; color: black !important;">
+      இப்போது புதிய தளத்திற்கு செல்லப்படுவீர்கள். அதில் 5 வினாடிகள் காத்திருக்கவும், உங்கள் படம் தானாகவே பதிவிறக்கம் செய்யப்படும்.
+    </p> 
+    <button onclick="confirmRedirect()" style="padding:10px 20px; background:#007BFF; color:white; border:none; border-radius:5px;">OK</button> 
   </div> 
+</div>
+
+<script>
+let actualDownloadUrl = "";
+
+function handleFinalDownload(downloadUrl) {
+  actualDownloadUrl = downloadUrl;
+  document.getElementById("popup").style.display = "flex";
+}
+
+function confirmRedirect() {
+  document.getElementById("popup").style.display = "none";
+  window.open("https://otieu.com/4/9535254", "_blank"); // ad site
+  setTimeout(() => {
+    window.location.href = actualDownloadUrl;
+  }, 5000);
+}
+</script>
+
+</div>
+
   </script> 
  
 
