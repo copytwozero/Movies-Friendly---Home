@@ -470,18 +470,38 @@ li a.coral strong {
   <a class="nav-btn home" onclick="window.location.href=' Hd-hub.html ';"> HD-Hub </a> 
   <br> 
    <br>
-h2 style="text-align:center; color:green;"> 'வாகை சூடும் வரலாறு திரும்புகிறது, வெற்றிப் பேரணியில் தமிழ்நாடு' மாநில மாநாடு நேரலை </h2>
+  <h2 style="text-align:center; color:#ff6600;">My YouTube Video (Autoplay)</h2>
 
   <div class="video-container">
-    <iframe 
-      src="https://www.youtube.com/embed/YDU7sWkOjUo?autoplay=1&mute=1" 
-      title="YouTube video player" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-      referrerpolicy="strict-origin-when-cross-origin" 
+    <iframe id="ytplayer"
+      src="https://www.youtube.com/embed/YDU7sWkOjUo?autoplay=1&mute=1&enablejsapi=1" 
+      frameborder="0"
+      allow="autoplay; encrypted-media"
       allowfullscreen>
     </iframe>
-  </div
+  </div>
+
+  <button class="unmute-btn" onclick="unmuteVideo()">🔊 Unmute</button>
+
+  <script>
+    // Load YouTube Iframe API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('ytplayer');
+    }
+
+    function unmuteVideo() {
+      if (player) {
+        player.unMute();
+      }
+    }
+  </script>
+
   </center>
   </div> 
   </script> 
