@@ -43,15 +43,15 @@ header {
 
 .nav-btn {
   display: inline-block;
-  margin: 5px;
+  margin: 0 5px; /* horizontal spacing */
   padding: 10px 16px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
   color: #000;
   text-align: center;
-  width: 90%;
-  max-width: 250px;
+  width: auto; /* auto width for horizontal line */
+  max-width: none;
   transition: transform 0.2s, background 0.3s;
 }
 
@@ -66,12 +66,10 @@ header {
 
 .language-nav {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center; /* horizontal alignment */
   gap: 10px;
   margin-bottom: 20px;
-}
-
+  }
 .video-container {
   width: 100%;
   max-width: 600px;
