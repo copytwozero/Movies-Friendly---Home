@@ -9,9 +9,10 @@
 :root {
   --accent: #4CAF50;
   --accent2: #4CAF50;
-  --text: #f0f0f0;
+  --text: #000;
   --muted: #888;
-  --card: rgba(255,255,255,0.05);
+  --card: rgba(0,0,0,0.05);
+  --bg: #ffffff;
 }
 
 * {
@@ -22,8 +23,8 @@
 }
 
 body {
-  background: #000;
-  color: #fff;
+  background: var(--bg);
+  color: var(--text);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -59,7 +60,7 @@ header {
 }
 
 .home { background-color: #2ecc71; }
-.tamil { background-color: #fbff00; color:#000; }
+.tamil { background-color: #fbff00; }
 .telugu { background-color: #ff0000; }
 .english { background-color: #91ff00; }
 
@@ -132,31 +133,7 @@ footer .social-links a img:hover {
 <a class="nav-btn home" onclick="window.location.href='Tamildub.html';">TamilDub Movies</a>
 <a class="nav-btn home" onclick="window.location.href='Moviesfriendly.html';">Movies Friendly</a>
 
-<h2 style="text-align:center; color:#ff6600; margin:20px 0;">
-'வாகை சூடும் வரலாறு திரும்புகிறது, வெற்றிப் பேரணியில் தமிழ்நாடு' மாநில மாநாடு நேரலை
-</h2>
 
-<div class="video-container">
-  <iframe id="ytplayer" src="https://www.youtube.com/embed/YDU7sWkOjUo?autoplay=1&mute=1&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</div>
-
-<button class="unmute-btn" onclick="unmuteVideo()">🔊 Unmute</button>
-
-<script>
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('ytplayer');
-}
-
-function unmuteVideo() {
-  if(player) player.unMute();
-}
-</script>
 
 <footer>
   <div class="social-links">
