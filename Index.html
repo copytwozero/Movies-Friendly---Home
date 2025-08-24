@@ -8,8 +8,10 @@
 <style>
 :root {
   --accent: #4CAF50;
+  --accent2: #4CAF50;
   --text: #000;
-  --muted: #666;
+  --muted: #888;
+  --card: rgba(0,0,0,0.05);
   --bg: #ffffff;
 }
 
@@ -17,7 +19,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 body {
@@ -29,41 +31,82 @@ body {
   align-items: center;
 }
 
-/* Header */
 header {
+  text-align: center;
   font-size: 2rem;
   font-weight: 800;
-  color: var(--accent);
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-/* Navigation buttons */
-.language-nav {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+  background: linear-gradient(to right, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
 }
 
 .nav-btn {
-  padding: 10px 18px;
+  display: inline-block;
+  margin: 0 5px; /* horizontal spacing */
+  padding: 10px 16px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
   color: #000;
+  text-align: center;
+  width: auto; /* auto width for horizontal line */
+  max-width: none;
   transition: transform 0.2s, background 0.3s;
-  display: inline-block;
 }
 
 .nav-btn:hover {
   transform: scale(1.05);
 }
 
-/* Colors */
-.red { background-color: #ff4d4d; }
-.yellow { background-color: #ffeb3b; }
-.green { background-color: #4caf50; }
+.home { background-color: #4CAF50; }
+.tamil { background-color: #fbff00; }
+.telugu { background-color: #ff0000; }
+.english { background-color: #91ff00; }
+
+.language-nav {
+  display: flex;
+  justify-content: center; /* horizontal alignment */
+  gap: 10px;
+  margin-bottom: 20px;
+  }
+.video-container {
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 16/9;
+  margin: 20px 0;
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.unmute-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+footer .social-links a img {
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+  transition: transform 0.2s;
+}
+
+footer .social-links a img:hover {
+  transform: scale(1.2);
+}
 
 /* Main links */
 .main-link {
@@ -81,95 +124,75 @@ header {
 }
 
 .main-link:hover {
-  background: #43a047;
+  background: #4CAF50;
 }
 
-/* Dropdown */
-.dropdown { position: relative; display: inline-block; margin-top: 15px; }
-.dropdown-content {
-  display: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #fff;
-  min-width: 180px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  z-index: 1;
-  border-radius: 5px;
-}
-.dropdown:hover .dropdown-content { display: block; }
-.dropdown-content a {
-  padding: 10px;
-  display: block;
-  color: #000;
-  text-decoration: none;
-}
-.dropdown-content a:hover { background: #f0f0f0; }
+/* Dropdown Menu */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffffff;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+    .dropdown:hover .dropdown-content { display: block; }
+    .dropdown-content a { color: #000000; padding: 10px 16px; text-decoration: none; display: block; text-align: center; }
+    .dropdown-content a:hover { background-color: #f0f0f0; }
 
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: 30px;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
 
-footer .social-links {
-  margin-top: 10px;
-}
-
-footer .social-links a img {
-  width: 30px;
-  margin: 0 5px;
-  transition: transform 0.2s;
-}
-
-footer .social-links a img:hover {
-  transform: scale(1.2);
-}
-
-/* Mobile */
+/* Mobile adjustments */
 @media (max-width: 480px) {
   header { font-size: 1.5rem; }
-  .main-link { width: 100%; }
+  .nav-btn { width: 100%; max-width: 100%; }
+  .video-container { max-width: 100%; height: auto; }
+  .unmute-btn { width: 100%; }
 }
 </style>
 </head>
 <body>
 
-<header>
-  Movies Friendly
-</header>
 
-<!-- Top Navigation -->
+  <header>
+    <a href="https://moviesfriendly.netlify.app" target="_blank">
+      Movies Friendly
+    </a>
+  </header>
+<nav>
 <div class="language-nav">
-  <a href="#" class="nav-btn red">@</a>
-  <a href="index.html" class="nav-btn yellow">Home</a>
-  <a href="#" class="nav-btn green">@</a>
+  <a href="index.html" class="nav-btn telugu">@</a>
+  <a href="#" class="nav-btn tamil">Home</a>
+  <a href="#" class="nav-btn home">@</a>
 </div>
+</nav>
+
 
 <!-- Main Links -->
 <a href="Tamil.html" class="main-link">Tamil Movies</a>
 <a href="Tamildub.html" class="main-link">TamilDub Movies</a>
 <a href="Moviesfriendly.html" class="main-link">Movies Friendly</a>
 
-<!-- Dropdown -->
-<div class="dropdown">
-  <a href="#" class="main-link">START</a>
-  <div class="dropdown-content">
-    <a href="telugu2025.html">Contact Us</a>
-    <a href="tamil2025.html">DMCA</a>
-    <a href="english2025.html">HOME</a>
-  </div>
-</div>
 
-<!-- Footer -->
+
+
 <footer>
-  © 2025 Movies Friendly. All rights reserved.
+<div class="dropdown">
+      <a href="#" class="nav-btn home">START</a>
+      <div class="dropdown-content">
+        <a href="telugu2025.html" class="nav-btn telugu">Contact Us</a>
+        <a href="tamil2025.html" class="nav-btn tamil">DMCA</a>
+        <a href="english2025.html" class="nav-btn home">HOME</a>
+      </div>
   <div class="social-links">
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"></a>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"></a>
+    © 2025 Movies Friendly. All rights reserved.
+    <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"></a>
+    <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
+    <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"></a>
   </div>
 </footer>
 
