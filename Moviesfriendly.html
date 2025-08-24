@@ -43,15 +43,15 @@ header {
 
 .nav-btn {
   display: inline-block;
-  margin: 5px;
+  margin: 0 5px; /* horizontal spacing */
   padding: 10px 16px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
   color: #000;
   text-align: center;
-  width: 90%;
-  max-width: 250px;
+  width: auto; /* auto width for horizontal line */
+  max-width: none;
   transition: transform 0.2s, background 0.3s;
 }
 
@@ -66,8 +66,7 @@ header {
 
 .language-nav {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center; /* horizontal alignment */
   gap: 10px;
   margin-bottom: 20px;
 }
@@ -113,26 +112,27 @@ footer .social-links a img:hover {
 /* Mobile adjustments */
 @media (max-width: 480px) {
   header { font-size: 1.5rem; }
-  .nav-btn { width: 100%; max-width: 100%; }
+  .nav-btn { padding: 8px 12px; font-size: 0.9rem; }
   .video-container { max-width: 100%; height: auto; }
   .unmute-btn { width: 100%; }
 }
 </style>
 </head>
 <body>
-  <br>
-   <a href="https://moviesfriendly.netlify.app/" class="nav-btn home"> Movies Friendly </a>
-  <br>
+
+<header>Movies Friendly</header>
+
+<a href="https://moviesfriendly.netlify.app/" class="nav-btn home">Home</a>
+
 <nav>
-<div class="language-nav">
-  <a href="index.html" class="nav-btn telugu">@</a>
-  <a href="#" class="nav-btn tamil">Movies Friendly</a>
-  <a href="#" class="nav-btn home">@</a>
-</div>
+  <div class="language-nav">
+    <a href="index.html" class="nav-btn telugu">Telugu</a>
+    <a href="#" class="nav-btn tamil">Tamil</a>
+    <a href="#" class="nav-btn english">English</a>
+  </div>
 </nav>
-<a class="nav-btn home" onclick="window.location.href='Veramathirioffice.html';"> Vera Mathiri Office</a>
 
-
+<a class="nav-btn home" onclick="window.location.href='Veramathirioffice.html';">Vera Mathiri Office</a>
 
 <footer>
   <div class="social-links">
