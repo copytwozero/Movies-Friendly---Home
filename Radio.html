@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎧 Live Radio</title>
+
+<style>
+  body {
+    font-family:'Segoe UI',sans-serif;
+    background:#ffffff;
+    color:#4CAF50;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    min-height:100vh;
+    padding:20px;
+    margin:0;
+  }
+  h1 { color:#4CAF50; margin-bottom:10px; text-align:center; }
+  select, button {
+    padding:10px 16px;
+    margin:5px;
+    border-radius:6px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+  }
+  button.play { background:#4CAF50; color:#111; }
+  button.stop { background:#ff0000; color:#111; }
+  button.prev { background:#fbff00; color:#111; }
+  button.next { background:#fbff00; color:#111; }
+
+  /* 🔹 Scrolling text */
+  .now-playing-container {
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    margin-top: 15px;
+    background: #00e1ff;
+   
+  }
+  .now-playing {
+    display: inline-block;
+    padding: 10px;
+    font-size: 18px;
+    color:#4CAF50;
+    animation: scroll 10s linear infinite;
+  }
+  @keyframes scroll {
+    from { transform: translateX(300%); }
+    to { transform: translateX(-100%); }
+  }
+
+  
+</style>
+</head>
+<body>
+
+<h1>🎶 Live Radio 🎶</h1>
+
+<label>Playlist தேர்வு செய்யவும் :</label>
+<select id="playlistSelect"  style="background:#ffffff; color:#111;">
+  <option value="live">Live</option>
+  <option value="book">Book</option>
+  <option value="sleep">Sleeping Time</option>
+</select>
+
+<div>
+  <button id="prevBtn" class="prev">⏮ Prev</button>
+  <button id="playBtn" class="play">▶ Play</button>
+  <button id="stopBtn" class="stop" style="display:none;">⏹ Stop</button>
+  <button id="nextBtn" class="next">⏭ Next</button>
+</div>
+
+<audio id="player"></audio>
+
+<!-- 🔹 Scrolling song title -->
+<div class="now-playing-container">
+  <div class="now-playing" id="title" style="color:#111;"> ▶ Play to Start</div>
+
+</div>
+
+<script>
+const playlists = {
+  live: [
+    {title:"Live", url:"https://downloader.f2lp.workers.dev/208093/Inner_journey_%E0%AE%87%E0%AE%B0%E0%AE%B5%E0%AE%B2_%E0%AE%87%E0%AE%A4%E0%AE%95_%E0%AE%95%E0%AE%B3%E0%AE%99%E0%AE%95%E0%AE%B3_%E0%AE%AA%E0%AE%B0%E0%AE%AA%E0%AE%9E%E0%AE%9A%E0%AE%AE.mp3?hash=AgAD5I"},
+    {title:"Live", url:"https://downloader.f2lp.workers.dev/208093/Inner_journey_song2.mp3"},
+    {title:"Live", url:"https://downloader.f2lp.workers.dev/208093/Inner_journey_song3.mp3"},
+    {title:"Live", url:"https://downloader.f2lp.workers.dev/208093/Inner_journey_song4.mp3"},
+    {title:"Live", url:"https://downloader.f2lp.workers.dev/208093/Inner_journey_song5.mp3"}
+  ],
+  book: [
+    {title:"Book 1", url:"https://downloader.f2lp.workers.dev/208093/Melody_song1.mp3"},
+    {title:"Book 2", url:"https://downloader.f2lp.workers.dev/208093/Melody_song2.mp3"},
+    {title:"Book 3", url:"https://downloader.f2lp.workers.dev/208093/Melody_song3.mp3"},
+    {title:"Book 4", url:"https://downloader.f2lp.workers.dev/208093/Melody_song4.mp3"},
+    {title:"Book 5", url:"https://downloader.f2lp.workers.dev/208093/Melody_song5.mp3"}
+  ],
+  sleep: [
+    {title:"Audio 1", url:"https://downloader.f2lp.workers.dev/208093/Remix_song1.mp3"},
+    {title:"Audio 2", url:"https://downloader.f2lp.workers.dev/208093/Remix_song2.mp3"},
+    {title:"Audio 3", url:"https://downloader.f2lp.workers.dev/208093/Remix_song3.mp3"},
+    {title:"Audio 4", url:"https://downloader.f2lp.workers.dev/208093/Remix_song4.mp3"},
+    {title:"Audio 5", url:"https://downloader.f2lp.workers.dev/208093/Remix_song5.mp3"}
+  ]
+};
+
+let currentPlaylist = "tamil";
+let currentIndex = 0;
+
+const player = document.getElementById("player");
+const title = document.getElementById("title");
+const playBtn = document.getElementById("playBtn");
+const stopBtn = document.getElementById("stopBtn");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const playlistSelect = document.getElementById("playlistSelect");
+
+function playSong(){
+  const song = playlists[currentPlaylist][currentIndex];
+  player.src = song.url;
+  title.textContent = "Live : " + song.title;
+  player.play();
+  playBtn.style.display="none";
+  stopBtn.style.display="inline-block";
+}
+
+function stopSong(){
+  player.pause();
+  player.currentTime=0;
+  title.textContent="▶ Play to Start";
+  stopBtn.style.display="none";
+  playBtn.style.display="inline-block";
+}
+
+function nextSong(){
+  currentIndex = (currentIndex+1) % playlists[currentPlaylist].length;
+  playSong();
+}
+
+function previousSong(){
+  currentIndex = (currentIndex-1 + playlists[currentPlaylist].length) % playlists[currentPlaylist].length;
+  playSong();
+}
+
+player.addEventListener("ended", nextSong);
+playBtn.addEventListener("click", playSong);
+stopBtn.addEventListener("click", stopSong);
+nextBtn.addEventListener("click", nextSong);
+prevBtn.addEventListener("click", previousSong);
+playlistSelect.addEventListener("change", e=>{
+  currentPlaylist = e.target.value;
+  currentIndex = 0;
+  stopSong();
+});
+
+</script>
+
+
+</body>
+</html>

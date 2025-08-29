@@ -62,14 +62,15 @@ header {
 .home { background-color: #4CAF50; }
 .tamil { background-color: #fbff00; }
 .telugu { background-color: #ff0000; }
-.english { background-color: #91ff00; }
+.english { background-color: #4CAF50; }
 
 .language-nav {
   display: flex;
   justify-content: center; /* horizontal alignment */
   gap: 10px;
   margin-bottom: 20px;
-  }
+}
+
 .video-container {
   width: 100%;
   max-width: 600px;
@@ -107,27 +108,7 @@ footer .social-links a img {
 footer .social-links a img:hover {
   transform: scale(1.2);
 }
-
-/* Main links */
-.main-link {
-  display: block;
-  background: var(--accent);
-  color: #fff;
-  text-align: center;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 8px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: 0.3s;
-  width: 260px;
-}
-
-.main-link:hover {
-  background: #4CAF50;
-}
-
-/* Dropdown Menu */
+  /* Dropdown Menu */
     .dropdown { position: relative; display: inline-block; }
     .dropdown-content {
       display: none;
@@ -149,49 +130,53 @@ footer .social-links a img:hover {
 /* Mobile adjustments */
 @media (max-width: 480px) {
   header { font-size: 1.5rem; }
-  .nav-btn { width: 100%; max-width: 100%; }
+  .nav-btn { padding: 8px 12px; font-size: 0.9rem; }
   .video-container { max-width: 100%; height: auto; }
   .unmute-btn { width: 100%; }
 }
+  /* Main links */
+.main-link {
+  display: block;
+  background: var(--accent);
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+  width: 260px;
+}
+
+.main-link:hover {
+  background: #4CAF50;
+  }
 </style>
 </head>
 <body>
 
-
-  <header>
-    <a href="https://moviesfriendly.netlify.app" target="_blank">
-      Movies Friendly
-    </a>
-  </header>
+<a href="https://moviesfriendly.netlify.app/" class="nav-btn home">Movies Friendly</a>
+<br>
 <nav>
-<div class="language-nav">
-  <a href="index.html" class="nav-btn telugu">@</a>
-  <a href="#" class="nav-btn tamil">Home</a>
-  <a href="#" class="nav-btn home">@</a>
-</div>
+  <div class="language-nav">
+    <a href="index.html" class="nav-btn telugu">@</a>
+    <a href="#" class="nav-btn tamil"> Tv Programs </a>
+    <a href="#" class="nav-btn english">@</a>
+  </div>
 </nav>
-
-
-<!-- Main Links -->
-<a href="Tamil.html" class="main-link">Tamil Movies</a>
-<a href="Tamildub.html" class="main-link">TamilDub Movies</a>
-<a href="Moviesfriendly.html" class="main-link">Movies Friendly</a>
-<a href="Radio.html" class="main-link"> Radio </a>
-
-
-
-
-
-
+  
+<a href="Vijaytv.html" class="main-link"> VijayTv </a>
 
 <footer>
-<div class="dropdown">
+  <div class="dropdown">
       <a href="#" class="nav-btn home">START</a>
       <div class="dropdown-content">
         <a href="telugu2025.html" class="nav-btn telugu">Contact Us</a>
         <a href="tamil2025.html" class="nav-btn tamil">DMCA</a>
         <a href="english2025.html" class="nav-btn home">HOME</a>
       </div>
+    </div>
   <div class="social-links">
     © 2025 Movies Friendly. All rights reserved.
     <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"></a>
