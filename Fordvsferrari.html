@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Movies Friendly</title>
+  <link rel="icon" type="image/svg+xml" href="/logo.svg"> 
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet"> 
+  <style>
+    :root {
+      --bg: #ffffff;
+      --accent: #4CAF50;
+      --text: #000000;
+      --muted: #888;
+    }
+
+    * { margin: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 { font-size: 2rem; margin: 20px 0; color: var(--accent); text-align: center; }
+
+    .language-nav { display: flex; justify-content: center; gap: 12px; margin: 20px 0; }
+    .nav-btn { padding: 10px 16px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+    .home { background-color: var(--accent); color: #000; }
+    .telugu { background-color: #ff0000; color: #000; }
+    .tamil { background-color: #fbff00; color: #000; }
+
+    .download-btn {
+      background-color: var(--accent);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      margin: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, filter 0.3s;
+    }
+    .download-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
+
+    footer { text-align: center; padding: 30px 20px; font-size: 0.9rem; color: var(--muted); }
+
+    /* Wait Popup */
+    #popup { 
+      display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+      background:#000000b3; z-index:9998; justify-content:center; align-items:center; 
+    }
+    #popup div { background:white; padding:20px; border-radius:8px; text-align:center; }
+
+    /* Video Modal */
+    #videoModal {
+      display:none;
+      position: fixed;
+      top:0; left:0;
+      width:100%;
+      height:100%;
+      background: rgba(0,0,0,0.85);
+      z-index:9999;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+    }
+    #videoModal video {
+      width: 90%;
+      max-width: 900px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    }
+    #videoModal .controls {
+      margin-top: 15px;
+      display:flex;
+      gap:10px;
+    }
+    #videoModal button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    #videoModal button:hover { background: #45a049; transform: scale(1.05); }
+  </style>
+</head>
+<body> 
+  <center>
+    <br>
+    <a href="https://moviesfriendly.netlify.app/" class="nav-btn home"> Movies Friendly </a>
+    <br>
+
+    <nav class="language-nav">
+      <a href="index.html" class="nav-btn telugu">@</a>
+      <a href="#" target="_blank" class="nav-btn tamil"> 2019 </a>
+      <a href="#" target="_blank" class="nav-btn home">@</a>
+    </nav>
+  </center>
+
+  <main style="width:100%; max-width:980px; display:flex; flex-direction:column; align-items:center;">
+    <h2> Ford Vs Ferrari (2019) Tamil</h2>
+
+    <!-- Buttons -->
+    <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:12px;">
+      <button class="download-btn" onclick="handleAction('play','https://downloader.f2lp.workers.dev/231566/CC_Ford_Vs_Ferrari_2019_Tamil_720p_HDRip_Tamil_Fan_Dub_Eng_x264.mkv?hash=AgADug')">▶ Play Video</button>
+      <button class="download-btn" onclick="handleAction('download','https://downloader.f2lp.workers.dev/231566/CC_Ford_Vs_Ferrari_2019_Tamil_720p_HDRip_Tamil_Fan_Dub_Eng_x264.mkv?hash=AgADug')">⬇ Download 1.5-GB</button>
+    </div>
+
+    <h4 style="margin-top:22px;">Telegram Download Link</h4>
+    <button class="download-btn" style="background:linear-gradient(135deg,#74b9ff,#0984e3);" onclick="handleAction('download','https://t.me/Moviesfriendly_bot?start=BQADAQADgAoAAs7R8UVk7LOCYOfeLBYE')">Download File's</button>
+
+    <!-- Back Button -->
+    <button class="nav-btn home" onclick="goBack()" style="margin-top:15px;">⬅ Back</button>
+
+    <!-- Video Modal -->
+    <div id="videoModal">
+      <video id="player" controls autoplay playsinline></video>
+      <div class="controls">
+        <button onclick="closeVideo()">✖ Close</button>
+        <button onclick="toggleFullscreen()">⛶ Fullscreen</button>
+      </div>
+    </div>
+
+    <!-- Wait Popup -->
+    <div id="popup"> 
+      <div> 
+        <p style="margin-bottom:15px; color:black; font-weight:600;" id="waitText">
+          Please wait 5 seconds before redirecting...
+        </p> 
+        <button onclick="confirmAction()" style="padding:10px 20px; background:#4CAF50; color:white; border:none; border-radius:5px;">OK</button> 
+      </div> 
+    </div>
+
+    <footer>
+      © 2025 Movies Friendly. All rights reserved.
+    </footer>
+
+  </main>
+
+  <script>
+    function goBack() { window.history.back(); }
+
+    let currentAction = "";
+    let currentUrl = "";
+
+    function handleAction(action, url) {
+      currentAction = action;
+      currentUrl = url.trim();
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function confirmAction() {
+      document.getElementById("popup").style.display = "none";
+
+      // Open Ad Redirect
+      window.open("Redirect.html", "_blank");
+
+      setTimeout(() => {
+        if (currentAction === "download") {
+          let link = document.createElement("a");
+          link.href = currentUrl;
+          link.download = "";
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+        } else if (currentAction === "play") {
+          const modal = document.getElementById("videoModal");
+          const player = document.getElementById("player");
+          player.src = currentUrl;
+          modal.style.display = "flex";
+          player.play();
+        }
+      }, 5000);
+    }
+
+    function closeVideo() {
+      const modal = document.getElementById("videoModal");
+      const player = document.getElementById("player");
+      player.pause();
+      player.src = "";
+      modal.style.display = "none";
+    }
+
+    function toggleFullscreen() {
+      const player = document.getElementById("player");
+      if (player.requestFullscreen) player.requestFullscreen();
+      else if (player.webkitRequestFullscreen) player.webkitRequestFullscreen();
+      else if (player.msRequestFullscreen) player.msRequestFullscreen();
+    }
+  </script>
+</body>
+</html>
