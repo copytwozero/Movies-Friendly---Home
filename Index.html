@@ -1,133 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"> 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-<title>Movies Friendly</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet"> 
-<style>
-:root {
-  --accent: #4CAF50;
-  --accent2: #4CAF50;
-  --text: #000;
-  --muted: #888;
-  --card: rgba(0,0,0,0.05);
-  --bg: #ffffff;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies Friendly</title>
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --accent: #4CAF50;
+      --text: #000;
+      --muted: #888;
+    }
+    * { margin:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
+    body { background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+    h2 { font-size:2rem; margin:20px 0; color: var(--accent); text-align:center; }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
+    .language-nav { display:flex; justify-content:center; gap:12px; margin:20px 0; padding:10px 0; background-color:#fff; border-radius:8px; }
+    .nav-btn { display:inline-block; padding:10px 16px; border-radius:5px; text-decoration:none; font-weight:bold; transition:0.2s; cursor:pointer; }
+    .nav-btn:hover { transform:scale(1.05); opacity:0.9; }
+    .home { background-color: var(--accent); color:#000; }
+    .telugu { background-color:#ff0000; color:#000; }
+    .tamil { background-color:#fbff00; color:#000; }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    #movies-list { text-align:center; }
+    .download-btn { background: var(--accent); color:white; padding:8px 14px; border:none; border-radius:6px; font-weight:bold; cursor:pointer; margin:6px; transition:0.2s; }
+    .download-btn:hover { background:#388e3c; }
+    .telegram-btn { background:linear-gradient(135deg,#74b9ff,#0984e3); }
 
-header {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 800;
-  background: linear-gradient(to right, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
-}
+    .details { display:none; text-align:center; padding:20px; max-width:600px; margin:auto; }
+    .info { margin:10px 0; font-size:1rem; color:#333; }
+    .back-btn { background:#f44336; color:white; padding:10px 18px; border-radius:6px; text-decoration:none; font-weight:bold; margin-top:12px; cursor:pointer; }
+    .back-btn:hover { background:#c62828; }
 
-.nav-btn {
-  display: inline-block;
-  margin: 0 5px; /* horizontal spacing */
-  padding: 10px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  color: #000;
-  text-align: center;
-  width: auto; /* auto width for horizontal line */
-  max-width: none;
-  transition: transform 0.2s, background 0.3s;
-}
-
-.nav-btn:hover {
-  transform: scale(1.05);
-}
-
-.home { background-color: #4CAF50; }
-.tamil { background-color: #fbff00; }
-.telugu { background-color: #ff0000; }
-.english { background-color: #91ff00; }
-
-.language-nav {
-  display: flex;
-  justify-content: center; /* horizontal alignment */
-  gap: 10px;
-  margin-bottom: 20px;
-  }
-.video-container {
-  width: 100%;
-  max-width: 600px;
-  aspect-ratio: 16/9;
-  margin: 20px 0;
-}
-
-.video-container iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.unmute-btn {
-  padding: 10px 20px;
-  font-size: 1rem;
-  margin-bottom: 20px;
-  cursor: pointer;
-}
-
-footer {
-  text-align: center;
-  margin-top: 30px;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-footer .social-links a img {
-  width: 30px;
-  height: 30px;
-  margin: 0 5px;
-  transition: transform 0.2s;
-}
-
-footer .social-links a img:hover {
-  transform: scale(1.2);
-}
-
-/* Main links */
-.main-link {
-  display: block;
-  background: var(--accent);
-  color: #fff;
-  text-align: center;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 8px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: 0.3s;
-  width: 260px;
-}
-
-.main-link:hover {
-  background: #4CAF50;
-}
-
-/* Dropdown Menu */
+    .episode-box { background:#f9f9f9; border:1px solid #ddd; border-radius:8px; padding:15px; margin:12px 0; text-align:center; }
+    .episode-title { font-weight:bold; margin-bottom:10px; font-size:1.1rem; }
+    
+    /* Dropdown Menu */
     .dropdown { position: relative; display: inline-block; }
     .dropdown-content {
       display: none;
@@ -145,91 +55,349 @@ footer .social-links a img:hover {
     .dropdown-content a { color: #000000; padding: 10px 16px; text-decoration: none; display: block; text-align: center; }
     .dropdown-content a:hover { background-color: #f0f0f0; }
 
+    #popup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center; }
+    #popup div { background:white; padding:20px; border-radius:8px; text-align:center; }
 
-/* Mobile adjustments */
-@media (max-width: 480px) {
-  header { font-size: 1.5rem; }
-  .nav-btn { width: 100%; max-width: 100%; }
-  .video-container { max-width: 100%; height: auto; }
-  .unmute-btn { width: 100%; }
-}
-</style>
+    #videoModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; flex-direction:column; }
+    #videoModal video { width:90%; max-width:900px; border-radius:10px; box-shadow:0 0 20px rgba(0,0,0,0.8); }
+    #videoModal .controls { margin-top:15px; display:flex; gap:10px; }
+    #videoModal button { background:var(--accent); color:white; border:none; padding:10px 18px; border-radius:6px; cursor:pointer; font-weight:bold; transition:0.3s; }
+    #videoModal button:hover { background:#45a049; transform:scale(1.05); }
+
+    footer { text-align:center; padding:30px 20px; font-size:0.9rem; color: var(--muted); margin-top:auto; }
+    .social-links { margin-top:10px; }
+    .social-links a img { width:30px; height:30px; margin:0 8px; vertical-align:middle; transition:0.2s; }
+    .social-links a img:hover { transform:scale(1.2); }
+  </style>
 </head>
 <body>
 
-
-  <header>
-    <a href="https://moviesfriendly.netlify.app" target="_blank">
-      Movies Friendly
-    </a>
-  </header>
-<nav>
-<div class="language-nav">
-  <a href="index.html" class="nav-btn telugu">@</a>
-  <a href="#" class="nav-btn tamil">Home</a>
-  <a href="#" class="nav-btn home">@</a>
-</div>
-</nav>
-
-
-<!-- Main Links -->
-<a href="Tamil.html" class="main-link">Tamil Movies</a>
-<a href="Tamildub.html" class="main-link">TamilDub Movies</a>
-<a href="Moviesfriendly.html" class="main-link">Movies Friendly</a>
-
-<a href="Radio.html" class="main-link"> Radio </a>
-
+  <!-- Navigation -->
+  <a href="https://moviesfriendly.netlify.app/" class="nav-btn home"> Movies Friendly </a>
+  <nav class="language-nav">
+    <a href="index.html" class="nav-btn telugu">@</a>
+    <a href="#" class="nav-btn tamil">Name of Brand</a>
+    <a href="#" class="nav-btn home">@</a>
+  </nav>
+  
+  <!-- Main Links -->
+  <a href="Tamil.html" class="nav-btn home">Tamil Movies</a>
   <br>
-    
-<h4>
-  <a href="https://moviesfriendly.netlify.app/mftamil" target="_blank" style="color:#4CAF50; "> Gandhi Kannadi</a> 
-  <a id="blinkLink"  style="color:blue; ">
-    Click Here
-  </a>
-</h4>
+  <a href="Tamildub.html" class="nav-btn home">TamilDub Movies</a>
   <br>
-<h4>
-  <a href="https://moviesfriendly.netlify.app/mftamil" target="_blank" style="color:#4CAF50; "> Madharaasi</a> 
-  <a id="blinkLink"  style="color:blue; ">
-    Click Here
-  </a>
-</h4>
-<script>
-const blink = document.getElementById('blinkLink');
-setInterval(() => {
-  blink.style.visibility = (blink.style.visibility === 'hidden') ? 'visible' : 'hidden';
-}, 500); // 0.5s blink
-</script>
 
+  <!-- Movies List -->
+  <section id="movies-list">
+    <h4> Suggested Movies</h4>
+    <div id="movies-container"></div>
+    <div id="pagination" style="margin-top:20px;"></div>
+  </section>
 
+  <!-- Movie Details -->
+  <section id="movie-details" class="details">
+    <h2 id="movie-name"></h2>
+    <div class="info"><b> Year :</b> <span id="movie-year"></span></div>
+    <div class="info"><b> Cast :</b> <span id="movie-cast"></span></div>
+    <div class="info"><b> Language :</b> <span id="movie-genre"></span></div>
 
+    <div id="main-buttons" style="margin-top:12px;"></div>
+    <div id="episodes-container" style="margin-top:20px;"></div>
 
+    <button class="back-btn" onclick="goBack()">⬅ Back</button>
+  </section>
 
+  <!-- Video Modal -->
+  <div id="videoModal">
+    <video id="player" controls autoplay playsinline></video>
+    <div class="controls">
+      <button onclick="closeVideo()">✖ Close</button>
+      <button onclick="toggleFullscreen()">⛶ Fullscreen</button>
+    </div>
+  </div>
 
-<footer>
-<div class="dropdown">
+  <!-- Popup -->
+  <div id="popup">
+    <div>
+      <p style="margin-bottom:15px; color:black; font-weight:600;">Please wait 5 seconds before redirecting...</p>
+      <button onclick="confirmAction()" style="padding:10px 20px; background:#007BFF; color:white; border:none; border-radius:5px;">OK</button>
+    </div>
+  </div>
+
+ <!-- Footer -->
+  <footer>
+    <div class="dropdown">
       <a href="#" class="nav-btn home">START</a>
       <div class="dropdown-content">
         <a href="telugu2025.html" class="nav-btn telugu">Contact Us</a>
         <a href="tamil2025.html" class="nav-btn tamil">DMCA</a>
         <a href="english2025.html" class="nav-btn home">HOME</a>
       </div>
-  <div class="social-links">
-    © 2025 Movies Friendly. All rights reserved.
-    <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"></a>
-    <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
-    <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="home"></a>
-    
-<script>
-const blink = document.getElementById('blinkLink');
-setInterval(() => {
-  blink.style.visibility = (blink.style.visibility === 'hidden') ? 'visible' : 'hidden';
-}, 500); // 0.5s blink
-</script>
+    </div>
+    <div class="social-links">
+      © 2025 Movies Friendly. All rights reserved.
+      <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"></a>
+      <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
+      <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"></a>
+    </div>
+  </footer>
 
-    
-  </div>
-</footer>
+ <!-- Movie Links + Pagination Script -->
+  <script>
+    const movies = [
+     {
+        title: 'Gandhi Kannadi ',
+        year: '2025',
+        cast: 'Bala',
+        genre: ' Tamil',
+        file: 'https://downloader.f2lp.workers.dev/233484/Gandhi_Kannadi_2025_Tamil_HQ_PreDVD_720p_x264_HQ_Clean_Audio_AAC.mkv?hash=AgADxB',
+        telegram: 'https://t.me/Moviesfriendly_bot?start=BQADAQAD0QcAAjBs-UWiYAZ_cl2VCxYE'
+      },
+       {
+        title: ' Madharaasi ',
+        year: '2025',
+        cast: 'Shivakarthikeyan,',
+        genre: 'Tamil',
+        file: ' https://downloader.f2lp.workers.dev/227589/Madharaasi+%282025%29+Tamil+HQ+PreDVD+-+720p+-.mkv?hash=AgAD8R ',
+        telegram: ' https://t.me/Moviesfriendly_bot?start=BQADAQADlAsAAnAk4EVpoWOPxCzBCxYE '
+      },
+         {
+        title: 'Coolie ',
+        year: '2025',
+        cast: 'Rajinikanth',
+        genre: ' Tamil',
+        file: 'https://downloader.f2lp.workers.dev/227697/Coolie+%282025%29+Tamil+HDRip+-+1080p+-+HEVC+-.mkv?hash=AgAD_R',
+        telegram: 'https://t.me/Moviesfriendly_bot?start=BQADAQAD1BMAAjBs-UU80JeGnCWgYRYE'
+      },
+     {
+        title: ' Locked ',
+        year: '2025',
+        cast: 'Anthony Hopkins, Bill Skarsgard, ',
+        genre: ' Tamil',
+        file: 'https://downloader.f2lp.workers.dev/233484/Gandhi_Kannadi_2025_Tamil_HQ_PreDVD_720p_x264_HQ_Clean_Audio_AAC.mkv?hash=AgADxB',
+        telegram: 'https://t.me/Moviesfriendly_bot?start=BQADAQAD0QcAAjBs-UWiYAZ_cl2VCxYE'
+      },
+     {
+        title: 'Ghaati ',
+        year: '2025',
+        cast: 'Vikram Prabhu,',
+        genre: ' Tamil',
+        file: 'https://downloader.f2lp.workers.dev/233484/Gandhi_Kannadi_2025_Tamil_HQ_PreDVD_720p_x264_HQ_Clean_Audio_AAC.mkv?hash=AgADxB',
+        telegram: 'https://t.me/Moviesfriendly_bot?start=BQADAQADNRMAAjBs-UVSuVMOeOQrDRYE'
+      },
+     {
+        title: ' The Conjuring Last Rides ',
+        year: '2025',
+        cast: 'Vera Farmiga, Patrick Wilson,',
+        genre: ' Tamil',
+        file: 'https://downloader.f2lp.workers.dev/229559/The_Conjuring_Last_Rites_2025_HDCAM_720p_x264_Tam_Tel_Hin_Eng_HQ.mkv?hash=AgADQx',
+        telegram: 'https://t.me/Moviesfriendly_bot?start=BQADAQADjxEAAs7R4UWx4B6eptI4rhYE'
+      },
+      {
+        title: 'Lokah Chapter 1 Chandra (2025) (Tamil) ',
+        year: '2025',
+        cast: 'Kalyani Priyadarshan, Naslen',
+        genre: ' Tamil',
+        file: 'https://downloader.f2l.workers.dev/28798/-+Lokah+Chapter+1+Chandra+%282025%29+Tamil+HQ+HDTS+-+720p+-+x26.mkv?hash=AgAD7A',
+        telegram: 'https://t.me/Moviesfriendly_bot?start=BQADAQAD8RMAAjBs-UUeaQ1R2O1b6RYE'
+      },
+         {
+        title: 'Magabaratham ',
+        year: '2013 - 2025',
+        cast: 'Magabaratham ',
+        genre: 'Tamil ',
+        episodes: [
+          { ep: 1, name: 'Episode 1', file: ' https://downloader.f2lp.workers.dev/228899/1.MP4?hash=AgAD1A ', telegram: 'Copy' },
+          { ep: 2, name: 'Episode 2', file: ' https://downloader.f2lp.workers.dev/228924/2-Mahabharatham+10_08_13.mp4?hash=AgAD7w ', telegram: 'Copy' },
+          { ep: 3, name: 'Episode 3', file: ' https://downloader.f2lp.workers.dev/228932/3.MP4?hash=AgADCw ', telegram: 'Copy' },
+           { ep: 1, name: 'Episode 4', file: ' https://downloader.f2lp.workers.dev/228927/4.MP4?hash=AgADJg ', telegram: 'Copy' },
+          { ep: 2, name: 'Episode 5', file: ' https://downloader.f2lp.workers.dev/228931/5.mp4?hash=AgADQQ ', telegram: 'Copy' },
+          { ep: 3, name: 'Episode 6', file: ' https://downloader.f2lp.workers.dev/229057/6.mp4?hash=AgADRg ', telegram: 'Copy' },
+          { ep: 1, name: 'Episode 7', file: ' https://downloader.f2lp.workers.dev/229058/7.mp4?hash=AgADSA ', telegram: 'Copy' },
+          { ep: 2, name: 'Episode 8', file: ' https://downloader.f2lp.workers.dev/229068/8.mp4?hash=AgADSw ', telegram: 'Copy' },
+          { ep: 3, name: 'Episode 9', file: ' https://downloader.f2lp.workers.dev/229062/9.mp4?hash=AgADTg ', telegram: 'Copy' },
+           { ep: 1, name: 'Episode 10', file: ' https://downloader.f2lp.workers.dev/229066/10.mp4?hash=AgAD1g ', telegram: 'Copy' },
+          { ep: 2, name: 'Episode 11', file: ' https://downloader.f2lp.workers.dev/229111/11.mp4?hash=AgAD2Q ', telegram: 'Copy' },
+          { ep: 3, name: 'Episode 12', file: ' https://downloader.f2lp.workers.dev/229127/12.mp4?hash=AgAD3A ', telegram: 'Copy' },
+          { ep: 1, name: 'Episode 13', file: ' https://downloader.f2lp.workers.dev/229117/13.mp4?hash=AgAD3g ', telegram: 'Copy' },
+          { ep: 2, name: 'Episode 14', file: ' https://downloader.f2lp.workers.dev/229114/14.mp4?hash=AgAD4A ', telegram: 'Copy' },
+          { ep: 3, name: 'Episode 15', file: ' https://downloader.f2lp.workers.dev/229120/15.mp4?hash=AgAD4w ', telegram: 'Copy' },
+           { ep: 1, name: 'Episode 16', file: ' https://downloader.f2lp.workers.dev/229129/16.mp4?hash=AgAD5g ', telegram: 'Copy' },
+          { ep: 2, name: 'Episode 17', file: ' https://downloader.f2lp.workers.dev/229133/17.mp4?hash=AgAD6A ', telegram: 'Copy' },
+          { ep: 3, name: 'Episode 18', file: ' https://downloader.f2lp.workers.dev/229126/18.mp4?hash=AgAD6w ', telegram: 'Copy' },
+          { ep: 1, name: 'Episode 19', file: ' https://downloader.f2lp.workers.dev/229136/19.mp4?hash=AgAD7g ', telegram: 'Copy' },
+          { ep: 2, name: 'Episode 20', file: ' https://downloader.f2lp.workers.dev/229138/20.mp4?hash=AgAD8g ', telegram: 'Copy' },
+          { ep: 3, name: 'Episode 21', file: ' https://downloader.f2lp.workers.dev/234600/21.mp4?hash=AgAD9Q ', telegram: 'Copy' },
+           { ep: 1, name: 'Episode 22', file: ' https://downloader.f2lp.workers.dev/234619/22.mp4?hash=AgAD9w ', telegram: 'Copy' },
+          { ep: 2, name: 'Episode 23', file: ' https://downloader.f2lp.workers.dev/234606/23.mp4?hash=AgAD-Q ', telegram: 'Copy' },
+          { ep: 3, name: 'Episode 24', file: ' https://downloader.f2lp.workers.dev/234604/24.mp4?hash=AgAD_A ', telegram: 'Copy' },
+          { ep: 2, name: 'Episode 25', file: ' https://downloader.f2lp.workers.dev/234613/25.mp4?hash=AgAD_w ', telegram: 'Copy' },
+          { ep: 3, name: 'Episode 26', file: ' https://downloader.f2lp.workers.dev/234610/26.mp4?hash=AgADAQ ', telegram: 'Copy' },
+           { ep: 1, name: 'Episode 27', file: ' https://downloader.f2lp.workers.dev/234622/27.mp4?hash=AgADAw ', telegram: 'Copy' },
+          { ep: 2, name: 'Episode 28', file: ' https://downloader.f2lp.workers.dev/234624/28.mp4?hash=AgADBg ', telegram: 'Copy' },
+          { ep: 3, name: 'Episode 29', file: ' https://downloader.f2lp.workers.dev/234618/29.mp4?hash=AgADCQ ', telegram: 'Copy' },
+           { ep: 2, name: 'Episode 30', file: ' https://downloader.f2lp.workers.dev/234627/30.mp4?hash=AgADDg ', telegram: 'Copy' },
+           ]
+      },
+       {
+        title: ' Gran Turismo ',
+        year: '2024',
+        cast: 'David Harbour,',
+        genre: 'Tamil',
+        file: ' https://downloader.f2lp.workers.dev/226614/Gran_Turismo_2023_HQ_HDRip_x264_Org_Auds_Tam_Tel_Hin_450MB_ESub.mkv?hash=AgADiR ',
+        telegram: ' https://t.me/Moviesfriendly_bot?start=BQADAQADjhMAAjBs-UU3xDrcAyzsYRYE '
+      },
+     
+      {
+        title: 'Ford Vs Ferrari',
+        year: '2019',
+        cast: 'Christian Bale,',
+        genre: 'Tamil',
+        file: 'https://downloader.f2lp.workers.dev/231566/CC_Ford_Vs_Ferrari_2019_Tamil_720p_HDRip_Tamil_Fan_Dub_Eng_x264.mkv?hash=AgADug',
+        telegram: 'https://t.me/Moviesfriendly_bot?start=BQADAQADgAoAAs7R8UVk7LOCYOfeLBYE'
+      },
+      {
+        title: 'Peacemaker',
+        year: '2025',
+        cast: 'John Chena',
+        genre: 'Tamil ',
+        episodes: [
+          { ep: 1, name: 'Episode 1', file: 'https://downloader.f2lp.workers.dev/233568/Peacemaker_2025_S02_EP01_1080p_HQ_HDRip_Tam_Hin_Eng_AAC_1GB_ESub.mkv?hash=AgADER', telegram: 'https://t.me/Moviesfriendly_bot?start=BQADAQADpQ4AAjBs-UWfJ8PvXn0NVRYE' },
+          { ep: 2, name: 'Episode 2', file: 'https://downloader.f2lp.workers.dev/233668/Peacemaker+%282025%29+S02+EP02+-+1080p+-+HQ+HD.mkv?hash=AgADFx', telegram: 'https://t.me/Moviesfriendly_bot?start=BQADAQADpQ4AAjBs-UWfJ8PvXn0NVRYE' },
+          { ep: 3, name: 'Episode 3', file: 'https://downloader.f2lp.workers.dev/233674/Peacemaker+%282025%29+S02+EP03+-+1080p+-+HQ+H.mkv?hash=AgAD4B', telegram: 'https://t.me/Moviesfriendly_bot?start=BQADAQADpQ4AAjBs-UWfJ8PvXn0NVRYE' },
+          ]
+      }
+      // add as many movies as you want ...
+    ];
 
+    const moviesPerPage = 10;
+    let currentPage = 1;
+
+    function renderMovies(page) {
+      const container = document.getElementById("movies-container");
+      container.innerHTML = "";
+
+      const start = (page - 1) * moviesPerPage;
+      const end = start + moviesPerPage;
+      const paginatedMovies = movies.slice(start, end);
+
+      paginatedMovies.forEach((m) => {
+        const btn = document.createElement('button');
+        btn.className = 'download-btn';
+        btn.innerText = m.title;
+        btn.onclick = () => showDetails(m);
+        container.appendChild(btn);
+      });
+
+      renderPagination(page);
+    }
+
+    function renderPagination(page) {
+      const pagination = document.getElementById("pagination");
+      pagination.innerHTML = "";
+      const totalPages = Math.ceil(movies.length / moviesPerPage);
+
+      if (page > 1) {
+        const prevBtn = document.createElement("button");
+        prevBtn.className = "download-btn";
+        prevBtn.innerText = "⬅ Prev";
+        prevBtn.onclick = () => { currentPage--; renderMovies(currentPage); };
+        pagination.appendChild(prevBtn);
+      }
+
+      for (let i = 1; i <= totalPages; i++) {
+        const pageBtn = document.createElement("button");
+        pageBtn.className = "download-btn";
+        pageBtn.innerText = i;
+        if (i === page) pageBtn.style.background = "#333";
+        pageBtn.onclick = () => { currentPage = i; renderMovies(currentPage); };
+        pagination.appendChild(pageBtn);
+      }
+
+      if (page < totalPages) {
+        const nextBtn = document.createElement("button");
+        nextBtn.className = "download-btn";
+        nextBtn.innerText = "Next ➡";
+        nextBtn.onclick = () => { currentPage++; renderMovies(currentPage); };
+        pagination.appendChild(nextBtn);
+      }
+    }
+
+    function showDetails(movie) {
+      document.getElementById("movies-list").style.display = "none";
+      document.getElementById("movie-details").style.display = "block";
+      document.getElementById("movie-name").innerText = movie.title;
+      document.getElementById("movie-year").innerText = movie.year;
+      document.getElementById("movie-cast").innerText = movie.cast;
+      document.getElementById("movie-genre").innerText = movie.genre;
+
+      const mainBtns = document.getElementById("main-buttons");
+      mainBtns.innerHTML = "";
+      if(movie.file){
+        mainBtns.innerHTML += `<button class="download-btn" onclick="handleAction('play','${movie.file}')">▶ Play Video</button>`;
+        mainBtns.innerHTML += `<button class="download-btn" onclick="handleAction('download','${movie.file}')">⬇ Download</button>`;
+      }
+      if(movie.telegram){
+        mainBtns.innerHTML += `<button class="download-btn telegram-btn" onclick="handleAction('download','${movie.telegram}')">Telegram Download</button>`;
+      }
+
+      const epContainer = document.getElementById("episodes-container");
+      epContainer.innerHTML = "";
+      if(movie.episodes){
+        movie.episodes.forEach(ep => {
+          const box = document.createElement("div");
+          box.className = "episode-box";
+          box.innerHTML = `
+            <div class="episode-title">${ep.name}</div>
+            ${ep.file ? `<button class="download-btn" onclick="handleAction('play','${ep.file}')">▶ Play Video</button>` : ""}
+            ${ep.file ? `<button class="download-btn" onclick="handleAction('download','${ep.file}')">⬇ Download</button>` : ""}
+            ${ep.telegram ? `<button class="download-btn telegram-btn" onclick="handleAction('download','${ep.telegram}')">Telegram Download</button>` : ""}
+          `;
+          epContainer.appendChild(box);
+        });
+      }
+    }
+
+    function goBack() {
+      document.getElementById("movie-details").style.display = "none";
+      document.getElementById("movies-list").style.display = "block";
+    }
+
+    let currentAction = '', currentUrl = '';
+    function handleAction(action, url) {
+      currentAction = action; currentUrl = url;
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function confirmAction() {
+      document.getElementById("popup").style.display = "none";
+      setTimeout(() => {
+        if(currentAction === 'download') window.open(currentUrl, "_blank");
+        else if(currentAction === 'play') {
+          const modal = document.getElementById("videoModal");
+          const player = document.getElementById("player");
+          player.src = currentUrl;
+          modal.style.display = "flex";
+          player.play();
+        }
+      }, 5000);
+    }
+
+    function closeVideo() {
+      const modal = document.getElementById("videoModal");
+      const player = document.getElementById("player");
+      player.pause(); player.src = "";
+      modal.style.display = "none";
+    }
+
+    function toggleFullscreen() {
+      const player = document.getElementById("player");
+      if(player.requestFullscreen) player.requestFullscreen();
+      else if(player.webkitRequestFullscreen) player.webkitRequestFullscreen();
+      else if(player.msRequestFullscreen) player.msRequestFullscreen();
+    }
+
+    // First load
+    renderMovies(currentPage);
+  </script>
 </body>
-</html>
+  </html>
