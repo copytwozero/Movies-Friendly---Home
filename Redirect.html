@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="ta">
 <head>
-<meta charset="UTF-8">
-<title> Redirecting...</title>
-<meta http-equiv="refresh" content="0; url=
-https://tamilbrothersite.blogspot.com/2025/09/blog-post.html
-">
+  <meta charset="UTF-8">
+  <title>Random Redirect</title>
+  <script>
+    // உங்க links list
+    const sites = [
+      "https://tamilbrothersite.blogspot.com/2025/09/blog-post.html",
+      "https://tamilbrothersite.blogspot.com/2025/09/k.html",
+      "https://tamilbrothersite.blogspot.com/2025/09/street-dogs.html",
+      "https://tamilbrothersite.blogspot.com/2025/08/weight-loss.html",
+      "https://tamilbrothersite.blogspot.com/2025/07/blog-post_88.html",
+      "https://tamilbrothersite.blogspot.com/2025/07/counselling.html",
+      "https://tamilbrothersite.blogspot.com/2025/07/blog-post_36.html",
+      "https://tamilbrothersite.blogspot.com/2025/07/blog-post_12.html",
+      "https://tamilbrothersite.blogspot.com/2025/07/blog-post_31.html",
+      "https://tamilbrothersite.blogspot.com/2025/07/blog-post_11.html",
+      
+    ];
+
+    // Random site open பண்ணும் function
+    function redirectRandom() {
+      const randomIndex = Math.floor(Math.random() * sites.length);
+      const randomSite = sites[randomIndex];
+      window.open(randomSite, "_blank"); // புதிய tab-ல் open ஆகும்
+    }
+
+    // Page load ஆனவுடன் run ஆகும்
+    window.onload = () => {
+      setTimeout(redirectRandom, 0);
+    };
+  </script>
 </head>
 <body>
 </body>
