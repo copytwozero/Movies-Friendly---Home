@@ -392,6 +392,10 @@
 
     function confirmAction() {
       document.getElementById("popup").style.display = "none";
+
+        // Open Ad Redirect
+      window.open("Redirect.html", "_blank"); 
+    
       setTimeout(() => {
         if(currentAction === 'download') window.open(currentUrl, "_blank");
         else if(currentAction === 'play') {
